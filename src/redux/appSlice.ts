@@ -21,13 +21,13 @@ const appSlice = createSlice({
         addTask: (state, action: PayloadAction<{ title: string }>) => {
             state.tasks.push({ title: action.payload.title, status: TaskStatus.IN_PROGRESS });
         },
-        toggleTaskCompletion: (state, action: PayloadAction<number>) => {
+        toggleTaskCompletion: (state: AppState, action: PayloadAction<number>) => {
             const task = state.tasks[action.payload];
             if (task) {
                 task.status = (task.status === TaskStatus.DONE ? TaskStatus.IN_PROGRESS : TaskStatus.DONE);
             }
         },
-        removeTask: (state, action: PayloadAction<number>) => {
+        removeTask: (state: AppState, action: PayloadAction<number>) => {
             state.tasks.splice(action.payload, 1);
         },
     },
